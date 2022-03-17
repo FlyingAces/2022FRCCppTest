@@ -1,0 +1,17 @@
+#pragma once
+
+#include <frc2/command/CommandHelper.h>
+#include <frc2/command/SequentialCommandGroup.h>
+#include <frc2/command/WaitCommand.h>
+#include <frc2/command/WaitUntilCommand.h>
+
+#include "commands/DriveCommands/DriveStraight.h"
+#include "subsystems/WestCoastDrive.h"
+
+class MainAuto : public frc2::CommandHelper<frc2::SequentialCommandGroup, MainAuto> {
+    public:
+        MainAuto(WestCoastDrive* p_Drive);
+    
+    private:
+    WestCoastDrive* mp_Drive;
+};
