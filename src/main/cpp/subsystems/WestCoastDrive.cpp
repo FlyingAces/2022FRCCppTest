@@ -7,22 +7,6 @@
 WestCoastDrive::WestCoastDrive() {
   SetName("WestCoastDrive");
   SetSubsystem("WestCoastDrive");
-
-  //Config
-  m_LeftLeader.SetNeutralMode(Brake);
-  m_RightLeader.SetNeutralMode(Brake);
-  m_LeftFollower.SetNeutralMode(Brake);
-  m_RightFollower.SetNeutralMode(Brake);
-
-  m_LeftLeader.ConfigOpenloopRamp(0.2);
-  m_RightLeader.ConfigOpenloopRamp(0.2);
-  m_LeftFollower.ConfigOpenloopRamp(0.2);
-  m_RightFollower.ConfigOpenloopRamp(0.2);
-
-  m_RightLeader.SetInverted(true);
-  m_RightFollower.SetInverted(true);
-
-  m_differntialDrive.SetSafetyEnabled(false);
 }
 
 void WestCoastDrive::arcadeDrive(double speed, double rotation) {

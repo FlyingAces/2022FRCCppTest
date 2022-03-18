@@ -10,6 +10,8 @@
 #include <ctre/Phoenix.h>
 #include <frc/motorcontrol/MotorControllerGroup.h>
 #include <frc/drive/DifferentialDrive.h>
+#include <frc/kinematics/DifferentialDriveKinematics.h>
+#include <frc/kinematics/DifferentialDriveOdometry.h>
 
 #include <cmath>
 #include <iostream>
@@ -37,7 +39,23 @@ namespace WestCoastConstants {
 }
 class WestCoastDrive : public frc2::SubsystemBase {
  public:
-  WestCoastDrive();
+  WestCoastDrive() {
+  //Config
+  m_LeftLeader.SetNeutralMode(Brake);
+  m_RightLeader.SetNeutralMode(Brake);
+  m_LeftFollower.SetNeutralMode(Brake);
+  m_RightFollower.SetNeutralMode(Brake);
+
+  m_LeftLeader.ConfigOpenloopRamp(0.2);
+  m_RightLeader.ConfigOpenloopRamp(0.2);
+  m_LeftFollower.ConfigOpenloopRamp(0.2);
+  m_RightFollower.ConfigOpenloopRamp(0.2);
+
+  m_RightLeader.SetInverted(true);
+  m_RightFollower.SetInverted(true);
+
+  m_differntialDrive.SetSafetyEnabled(false);
+  }
 
   void arcadeDrive(double speed, double rotation);
   void zeroDrivetrain();
