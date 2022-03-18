@@ -22,11 +22,14 @@ WestCoastDrive::WestCoastDrive() {
   m_RightLeader.SetInverted(true);
   m_RightFollower.SetInverted(true);
 
-  m_differntialDrive.SetSafetyEnabled(false);
+  m_differentialDrive.SetSafetyEnabled(false);
+
+  //Odemetry Setup
+  frc::SmartDashboard::PutData("Field", &m_field);
 }
 
 void WestCoastDrive::arcadeDrive(double speed, double rotation) {
-  m_differntialDrive.ArcadeDrive(speed, rotation, false);
+  m_differentialDrive.ArcadeDrive(speed, rotation, false);
 }
 
 void WestCoastDrive::zeroDrivetrain() {
@@ -42,7 +45,10 @@ double WestCoastDrive::getRightCurrentPosition() {
   return m_RightLeader.GetSelectedSensorPosition(0);
 }
 
-
+//Odometry Set up
+void WestCoastDrive::UpdateOdometry() {
+  m_Odometry.Update(m_gyro.GetRotation2d(), units::meter_t(m_LeftLeader.GetSelectedSensorPosition(0)), units::meter_t(m_RightLeader.GetSelectedSensorPosition(0)));
+}
 
 void WestCoastDrive::Periodic() {
   // Implementation of subsystem periodic method goes here.
@@ -50,4 +56,6 @@ void WestCoastDrive::Periodic() {
 
 void WestCoastDrive::SimulationPeriodic() {
   // Implementation of subsystem simulation periodic method goes here.
+  WestCoastDrive::UpdateOdometry();
+  m_field.SetRobotPose(m_Odometry.GetPose());
 }

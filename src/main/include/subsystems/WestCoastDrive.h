@@ -12,6 +12,10 @@
 #include <frc/drive/DifferentialDrive.h>
 #include <frc/kinematics/DifferentialDriveKinematics.h>
 #include <frc/kinematics/DifferentialDriveOdometry.h>
+#include <frc/smartdashboard/SmartDashboard.h>
+#include <frc/smartdashboard/Field2d.h>
+#include <frc/AnalogGyro.h>
+#include <units/length.h>
 
 #include <cmath>
 #include <iostream>
@@ -36,6 +40,8 @@ namespace WestCoastConstants {
   // Sizes
   //In Inches
   const double kWheelDiameter = 6.0;
+  const units::length::meter_t  kTrackWidth(0.5715);
+
 }
 class WestCoastDrive : public frc2::SubsystemBase {
  public:
@@ -50,6 +56,9 @@ class WestCoastDrive : public frc2::SubsystemBase {
   void Periodic() override;
 
   void SimulationPeriodic() override;
+
+  //Odometry Set Up
+  void UpdateOdometry();
   
  private:
   // Components (e.g. motor controllers and sensors) should generally be
@@ -62,5 +71,14 @@ class WestCoastDrive : public frc2::SubsystemBase {
   frc::MotorControllerGroup m_LeftGroup{m_LeftLeader, m_LeftFollower};
   frc::MotorControllerGroup m_RightGroup{m_RightLeader, m_RightFollower};
 
-  frc::DifferentialDrive m_differntialDrive{m_LeftGroup, m_RightGroup};
+  frc::DifferentialDrive m_differentialDrive{m_LeftGroup, m_RightGroup};
+
+  frc::AnalogGyro m_gyro{0};
+
+  //Odometry Set up
+  frc::DifferentialDriveKinematics m_Kinematics{WestCoastConstants::kTrackWidth};
+  frc::DifferentialDriveOdometry m_Odometry{m_gyro.GetRotation2d()};
+
+  frc::Field2d m_field;
+
 };
