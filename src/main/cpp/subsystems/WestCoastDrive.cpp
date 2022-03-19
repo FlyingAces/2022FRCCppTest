@@ -52,10 +52,11 @@ void WestCoastDrive::UpdateOdometry() {
 
 void WestCoastDrive::Periodic() {
   // Implementation of subsystem periodic method goes here.
+  WestCoastDrive::UpdateOdometry();
+  m_field.SetRobotPose(m_Odometry.GetPose());
 }
 
 void WestCoastDrive::SimulationPeriodic() {
   // Implementation of subsystem simulation periodic method goes here.
-  WestCoastDrive::UpdateOdometry();
-  m_field.SetRobotPose(m_Odometry.GetPose());
+  
 }
