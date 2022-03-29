@@ -4,7 +4,7 @@
 
 #include "subsystems/WestCoastDrive.h"
 
-WestCoastDrive::WestCoastDrive() {
+WestCoastDrive::WestCoastDrive(frc::XboxController* p_Controller) : mp_Controller{p_Controller} {
   SetName("WestCoastDrive");
   SetSubsystem("WestCoastDrive");
 
@@ -22,11 +22,16 @@ WestCoastDrive::WestCoastDrive() {
   m_RightLeader.SetInverted(true);
   m_RightFollower.SetInverted(true);
 
-  m_differntialDrive.SetSafetyEnabled(false);
+  m_DifferntialDrive.SetSafetyEnabled(false);
 }
 
 void WestCoastDrive::arcadeDrive(double speed, double rotation) {
-  m_differntialDrive.ArcadeDrive(speed, rotation, false);
+  m_DifferntialDrive.ArcadeDrive(speed, rotation, false);
+}
+
+void WestCoastDrive::controllerDrive() {
+  m_ControllerDriveSpeed = mp_Controller->GetRightY() * WestCoastConstants::kSpeedMult;
+  m_ControllerDriveRotation = mp_Controller->GetRightX() * WestCoastConstants::kRotationMult;
 }
 
 void WestCoastDrive::zeroDrivetrain() {
@@ -43,11 +48,6 @@ double WestCoastDrive::getRightCurrentPosition() {
 }
 
 
-
 void WestCoastDrive::Periodic() {
   // Implementation of subsystem periodic method goes here.
-}
-
-void WestCoastDrive::SimulationPeriodic() {
-  // Implementation of subsystem simulation periodic method goes here.
 }

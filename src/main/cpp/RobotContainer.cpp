@@ -4,20 +4,13 @@
 
 #include "RobotContainer.h"
 
-RobotContainer* RobotContainer::m_RobotContainer = NULL;
+RobotContainer* RobotContainer::mp_RobotContainer = NULL;
 
 RobotContainer::RobotContainer() {
+  m_WestCoastDrive.SetDefaultCommand(std::move(m_RunDriveWithControllerr));
   
-  // Configure the button bindings
   ConfigureButtonBindings();
   
-}
-
-RobotContainer* RobotContainer::GetInstance() {
-  if (m_RobotContainer == NULL) {
-    m_RobotContainer = new RobotContainer();
-  }
-  return (m_RobotContainer);
 }
 
 void RobotContainer::ConfigureButtonBindings() {

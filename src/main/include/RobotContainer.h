@@ -4,34 +4,36 @@
 
 #pragma once
 
+#include <frc/XboxController.h>
 #include <frc2/command/Command.h>
+#include <frc2/command/button/Button.h>
 #include <iostream>
 
 #include "commands/AutoCommands/MainAuto.h"
+#include "commands/DriveCommands/DriveWithController.h"
 #include "subsystems/WestCoastDrive.h"
 
-/**
- * This class is where the bulk of the robot should be declared.  Since
- * Command-based is a "declarative" paradigm, very little robot logic should
- * actually be handled in the {@link Robot} periodic methods (other than the
- * scheduler calls).  Instead, the structure of the robot (including subsystems,
- * commands, and button mappings) should be declared here.
- */
 class RobotContainer {
  public:
-  RobotContainer();
+  static RobotContainer* mp_RobotContainer;
+  static RobotContainer* GetInstance() {
+    if(mp_RobotContainer == NULL) mp_RobotContainer = new RobotContainer();
+    return mp_RobotContainer;
+  }
 
   frc2::Command* GetAutonomousCommand();
-
-  static RobotContainer* GetInstance();
   void RobotInit();
 
  private:
-  // The robot's subsystems and commands are defined here...
-
-  static RobotContainer* m_RobotContainer;
-
-  WestCoastDrive m_WestCoastDrive;
+  RobotContainer();
 
   void ConfigureButtonBindings();
+
+  // Subsystems and Commands
+  WestCoastDrive m_WestCoastDrive{&m_DriverController};
+  DriveWithController m_RunDriveWithControllerr{&m_WestCoastDrive};
+
+  // Controllers
+  frc::XboxController m_DriverController{0};
+  frc2::Button m_DriverButtonRB { [&] { return m_DriverController.GetRightBumper(); }};
 };

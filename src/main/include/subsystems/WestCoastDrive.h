@@ -25,7 +25,11 @@ namespace WestCoastConstants {
   const int kRightLeader = 4;
   const int kLeftFollower = 2;
   const int kRightFollower = 3;
-  
+
+  //Drive With Controller Constants
+  const double kSpeedMult = 0.75;
+  const double kRotationMult = 0.35;
+
   // Calibration Values
 
   // Motor Max Speeds
@@ -39,21 +43,33 @@ namespace WestCoastConstants {
 }
 class WestCoastDrive : public frc2::SubsystemBase {
  public:
-  WestCoastDrive();
+  WestCoastDrive(frc::XboxController* p_Controller);
 
   void arcadeDrive(double speed, double rotation);
+  void controllerDrive();
   void zeroDrivetrain();
   
   double getLeftCurrentPosition();
   double getRightCurrentPosition();
 
+  void setAutoState(bool state) {
+    m_AutoState = state;
+  }
+
+  bool getAutoState() {
+    return m_AutoState;
+  }
+
   void Periodic() override;
 
-  void SimulationPeriodic() override;
-  
  private:
-  // Components (e.g. motor controllers and sensors) should generally be
-  // declared private and exposed only through public methods.
+
+  bool m_AutoState;
+
+  frc::XboxController* mp_Controller;
+  double m_ControllerDriveSpeed;
+  double m_ControllerDriveRotation;
+
   WPI_TalonFX m_LeftLeader{WestCoastConstants::kLeftLeader};
   WPI_TalonFX m_RightLeader{WestCoastConstants::kRightLeader};
   WPI_TalonFX m_LeftFollower{WestCoastConstants::kLeftFollower};
@@ -62,5 +78,5 @@ class WestCoastDrive : public frc2::SubsystemBase {
   frc::MotorControllerGroup m_LeftGroup{m_LeftLeader, m_LeftFollower};
   frc::MotorControllerGroup m_RightGroup{m_RightLeader, m_RightFollower};
 
-  frc::DifferentialDrive m_differntialDrive{m_LeftGroup, m_RightGroup};
+  frc::DifferentialDrive m_DifferntialDrive{m_LeftGroup, m_RightGroup};
 };
