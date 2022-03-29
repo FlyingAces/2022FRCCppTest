@@ -30,8 +30,9 @@ void WestCoastDrive::arcadeDrive(double speed, double rotation) {
 }
 
 void WestCoastDrive::controllerDrive() {
-  m_ControllerDriveSpeed = mp_Controller->GetRightY() * WestCoastConstants::kSpeedMult;
-  m_ControllerDriveRotation = mp_Controller->GetRightX() * WestCoastConstants::kRotationMult;
+  m_ControllerDriveSpeed = mp_Controller->GetLeftY() * WestCoastConstants::kSpeedMult;
+  m_ControllerDriveRotation = mp_Controller->GetLeftX() * WestCoastConstants::kRotationMult;
+  m_DifferntialDrive.ArcadeDrive(m_ControllerDriveSpeed, m_ControllerDriveRotation);
 }
 
 void WestCoastDrive::zeroDrivetrain() {

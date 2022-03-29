@@ -31,7 +31,7 @@ class RobotContainer {
 
   // Subsystems and Commands
   WestCoastDrive m_WestCoastDrive{&m_DriverController};
-  DriveWithController m_RunDriveWithControllerr{&m_WestCoastDrive};
+  DriveWithController m_RunDriveWithController{&m_WestCoastDrive};
 
   // Controllers
   frc::XboxController m_DriverController{0};
