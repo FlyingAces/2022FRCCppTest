@@ -52,8 +52,7 @@ class WestCoastDrive : public frc2::SubsystemBase {
   void toggleDriveMode();
   void zeroDrivetrain();
   
-  double getLeftCurrentPosition();
-  double getRightCurrentPosition();
+  double getAvgEncoderPosition();
 
   void setAutoState(bool state) {
     m_AutoState = state;

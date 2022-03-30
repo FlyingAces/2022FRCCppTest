@@ -55,12 +55,8 @@ void WestCoastDrive::zeroDrivetrain() {
   m_RightLeader.SetSelectedSensorPosition(0.0);
 }
 
-double WestCoastDrive::getLeftCurrentPosition() {
-  return m_LeftLeader.GetSelectedSensorPosition(0);
-}
-
-double WestCoastDrive::getRightCurrentPosition() {
-  return m_RightLeader.GetSelectedSensorPosition(0);
+double WestCoastDrive::getAvgEncoderPosition() {
+  return (m_LeftLeader.GetSelectedSensorPosition(0) + m_RightLeader.GetSelectedSensorPosition(0)) / 2;
 }
 
 
