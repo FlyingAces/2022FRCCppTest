@@ -21,8 +21,12 @@ WestCoastDrive::WestCoastDrive(frc::XboxController* p_Controller) : mp_Controlle
 
   m_RightLeader.SetInverted(true);
   m_RightFollower.SetInverted(true);
-
+ 
   m_DifferntialDrive.SetSafetyEnabled(false);
+
+  m_DriveMode = true;
+  m_DriveSpeedMult = WestCoastConstants::kFullSpeedMult;
+  m_RotationSpeedMult = WestCoastConstants::kFullRotationMult;
 }
 
 void WestCoastDrive::arcadeDrive(double speed, double rotation) {
@@ -30,9 +34,20 @@ void WestCoastDrive::arcadeDrive(double speed, double rotation) {
 }
 
 void WestCoastDrive::controllerDrive() {
-  m_ControllerDriveSpeed = mp_Controller->GetLeftY() * WestCoastConstants::kSpeedMult;
-  m_ControllerDriveRotation = mp_Controller->GetLeftX() * WestCoastConstants::kRotationMult;
+  m_ControllerDriveSpeed = (mp_Controller->GetLeftTriggerAxis() - mp_Controller->GetRightTriggerAxis()) * m_DriveSpeedMult;
+  m_ControllerDriveRotation = mp_Controller->GetLeftX() * m_RotationSpeedMult;
   m_DifferntialDrive.ArcadeDrive(m_ControllerDriveSpeed, m_ControllerDriveRotation);
+}
+
+void WestCoastDrive::toggleDriveMode() {
+  m_DriveMode = !m_DriveMode;
+  if(m_DriveMode) {
+    m_DriveSpeedMult = WestCoastConstants::kFullSpeedMult;
+    m_RotationSpeedMult = WestCoastConstants::kFullRotationMult;
+  } else {
+    m_DriveSpeedMult = WestCoastConstants::kHalfSpeedMult;
+    m_RotationSpeedMult = WestCoastConstants::kHalfRotationMult;
+  }
 }
 
 void WestCoastDrive::zeroDrivetrain() {

@@ -27,8 +27,10 @@ namespace WestCoastConstants {
   const int kRightFollower = 3;
 
   //Drive With Controller Constants
-  const double kSpeedMult = 0.75;
-  const double kRotationMult = 0.35;
+  const double kFullSpeedMult = 0.75;
+  const double kFullRotationMult = 0.50;
+  const double kHalfSpeedMult = 0.50;
+  const double kHalfRotationMult = 0.35;
 
   // Calibration Values
 
@@ -47,6 +49,7 @@ class WestCoastDrive : public frc2::SubsystemBase {
 
   void arcadeDrive(double speed, double rotation);
   void controllerDrive();
+  void toggleDriveMode();
   void zeroDrivetrain();
   
   double getLeftCurrentPosition();
@@ -65,10 +68,15 @@ class WestCoastDrive : public frc2::SubsystemBase {
  private:
 
   bool m_AutoState;
+  // true = full speed
+  // false = half speed
+  bool m_DriveMode;
 
   frc::XboxController* mp_Controller;
   double m_ControllerDriveSpeed;
   double m_ControllerDriveRotation;
+  double m_DriveSpeedMult;
+  double m_RotationSpeedMult;
 
   WPI_TalonFX m_LeftLeader{WestCoastConstants::kLeftLeader};
   WPI_TalonFX m_RightLeader{WestCoastConstants::kRightLeader};

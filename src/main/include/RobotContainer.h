@@ -10,7 +10,8 @@
 #include <iostream>
 
 #include "commands/AutoCommands/MainAuto.h"
-#include "commands/DriveCommands/DriveWithController.h"
+#include "commands/DriveWithController.h"
+#include "commands/DriveCommands/ToggleDriveMode.h"
 #include "subsystems/WestCoastDrive.h"
 
 class RobotContainer {
@@ -32,8 +33,9 @@ class RobotContainer {
   // Subsystems and Commands
   WestCoastDrive m_WestCoastDrive{&m_DriverController};
   DriveWithController m_RunDriveWithController{&m_WestCoastDrive};
+  ToggleDriveMode m_ToggleDriveMode{&m_WestCoastDrive};
 
   // Controllers
   frc::XboxController m_DriverController{0};
-  frc2::Button m_DriverButtonRB { [&] { return m_DriverController.GetRightBumper(); }};
+  frc2::Button m_DriverButtonY { [&] { return m_DriverController.GetYButton(); }};
 };
