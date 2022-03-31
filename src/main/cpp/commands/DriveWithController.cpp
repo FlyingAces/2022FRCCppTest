@@ -1,4 +1,4 @@
-#include "commands/DriveCommands/DriveWithController.h"
+#include "commands/DriveWithController.h"
 
 DriveWithController::DriveWithController(WestCoastDrive* p_WestCoastDrive) : mp_WestCoastDrive {p_WestCoastDrive} {
     SetName("DriveWithController");

@@ -9,23 +9,24 @@
 DriveStraight::DriveStraight(WestCoastDrive* p_WestCoastDrive, double distance, double speed) : mp_WestCoastDrive{p_WestCoastDrive}, m_Distance{distance}, m_Speed{speed} {
     SetName("DriveStraight");
     AddRequirements(p_WestCoastDrive);
-    
-    // Changes sign based on direction
-    m_OutputSpeed = (m_Distance/ std::abs(m_Distance)) * speed;
-
-    //Converts distance to encoder pulses
-    // (Distance / Wheel Circ) * encoder pulses * 4
-    m_OutputDistance = std::abs(((distance / (WestCoastConstants::kWheelDiameter * WestCoastConstants::kPI)) * WestCoastConstants::kPulsesPerRev) * 4);
 }
 
 void DriveStraight::Initialize() {
+        
+    // Changes sign based on direction
+    m_OutputSpeed = (m_Distance / std::abs(m_Distance)) * m_Speed;
+
+    //Converts distance to encoder pulses
+    // (Distance / Wheel Circ) * encoder pulses * 4
+    m_OutputDistance = std::abs(((m_Distance / (WestCoastConstants::kWheelDiameter * WestCoastConstants::kPI)) * WestCoastConstants::kPulsesPerRev) * 4);
     mp_WestCoastDrive->zeroDrivetrain();
 }
 
 void DriveStraight::Execute() {
     mp_WestCoastDrive->arcadeDrive(m_OutputSpeed, 0);
+    //std::cout << "Encoder Pos: " << mp_WestCoastDrive->getAvgEncoderPosition() << " Requested Pos: " << m_Distance << std::endl;
 }
 
 bool DriveStraight::IsFinished() {
-    return ((std::abs(mp_WestCoastDrive->getLeftCurrentPosition()) + (std::abs(mp_WestCoastDrive->getRightCurrentPosition())) / 2) >= std::abs(m_OutputDistance));
+    return (std::abs(mp_WestCoastDrive->getAvgEncoderPosition()) >= std::abs(m_OutputDistance));
 }

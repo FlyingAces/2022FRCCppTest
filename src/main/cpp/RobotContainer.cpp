@@ -7,7 +7,11 @@
 RobotContainer* RobotContainer::mp_RobotContainer = NULL;
 
 RobotContainer::RobotContainer() {
-  m_WestCoastDrive.SetDefaultCommand(std::move(m_RunDriveWithControllerr));
+  std::cout << "Set Default Command" << std::endl;
+  m_WestCoastDrive.SetDefaultCommand(std::move(m_RunDriveWithController));
+  //Set Auto State False for testing
+  std::cout << "Auto State False" << std::endl;
+  m_WestCoastDrive.setAutoState(false);
   
   ConfigureButtonBindings();
   
@@ -15,10 +19,11 @@ RobotContainer::RobotContainer() {
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
+  m_DriverButtonY.WhenPressed(m_ToggleDriveMode);
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
-  std::cout << "Starting Auto";
+  //std::cout << "Starting Auto";
   return new MainAuto(&m_WestCoastDrive);
 }
