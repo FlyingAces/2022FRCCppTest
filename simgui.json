@@ -20,9 +20,6 @@
         "header": {
           "open": true
         }
-      },
-      "window": {
-        "visible": false
       }
     },
     "Timing": {
@@ -36,7 +33,8 @@
       "/FMSInfo": "FMSInfo",
       "/LiveWindow/Ungrouped/DifferentialDrive[1]": "DifferentialDrive",
       "/LiveWindow/Ungrouped/Scheduler": "Scheduler",
-      "/LiveWindow/WestCoastDrive": "Subsystem"
+      "/LiveWindow/WestCoastDrive": "Subsystem",
+      "/Shuffleboard/Drive/AutoMode": "String Chooser"
     }
   },
   "NetworkTables View": {

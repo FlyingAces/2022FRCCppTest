@@ -9,12 +9,17 @@ RobotContainer* RobotContainer::mp_RobotContainer = NULL;
 RobotContainer::RobotContainer() {
   std::cout << "Set Default Command" << std::endl;
   m_WestCoastDrive.SetDefaultCommand(std::move(m_RunDriveWithController));
-  //Set Auto State False for testing
+  // Set Auto State False for testing
   std::cout << "Auto State False" << std::endl;
   m_WestCoastDrive.setAutoState(false);
   
   ConfigureButtonBindings();
-  
+
+  // Auto
+  m_AutoMode.SetDefaultOption("Main Auto", new MainAuto(&m_WestCoastDrive));
+  m_AutoMode.AddOption("None", new frc2::PrintCommand("No Auto"));
+
+  frc::Shuffleboard::GetTab("Drive").Add("AutoMode", m_AutoMode).WithWidget(frc::BuiltInWidgets::kComboBoxChooser);
 }
 
 void RobotContainer::ConfigureButtonBindings() {
@@ -25,5 +30,5 @@ void RobotContainer::ConfigureButtonBindings() {
 frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
   //std::cout << "Starting Auto";
-  return new MainAuto(&m_WestCoastDrive);
+  return m_AutoMode.GetSelected();
 }

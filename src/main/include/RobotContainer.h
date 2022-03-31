@@ -7,6 +7,13 @@
 #include <frc/XboxController.h>
 #include <frc2/command/Command.h>
 #include <frc2/command/button/Button.h>
+#include <frc2/command/PrintCommand.h>
+#include <frc/shuffleboard/Shuffleboard.h>
+#include <frc/shuffleboard/ShuffleboardLayout.h>
+#include <frc/shuffleboard/ShuffleboardTab.h>
+#include <frc/smartdashboard/SendableChooser.h>
+#include <frc/smartdashboard/SmartDashboard.h>
+
 #include <iostream>
 
 #include "commands/AutoCommands/MainAuto.h"
@@ -29,6 +36,9 @@ class RobotContainer {
   RobotContainer();
 
   void ConfigureButtonBindings();
+
+  //Choose Auto
+  frc::SendableChooser<frc2::Command*> m_AutoMode;
 
   // Subsystems and Commands
   WestCoastDrive m_WestCoastDrive{&m_DriverController};
