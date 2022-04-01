@@ -26,6 +26,7 @@ class DriveStraight
     void Initialize() override;
     void Execute() override;
     bool IsFinished() override;
+    void End(bool interupted);
 
 
  private:
