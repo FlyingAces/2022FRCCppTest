@@ -30,3 +30,7 @@ void DriveStraight::Execute() {
 bool DriveStraight::IsFinished() {
     return (std::abs(mp_WestCoastDrive->getAvgEncoderPosition()) >= std::abs(m_OutputDistance));
 }
+
+void DriveStraight::End(bool interupted) {
+    mp_WestCoastDrive->zeroDrivetrain();
+}
