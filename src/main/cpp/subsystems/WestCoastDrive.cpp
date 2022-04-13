@@ -19,6 +19,8 @@ WestCoastDrive::WestCoastDrive(frc::XboxController* p_Controller) : mp_Controlle
   m_LeftFollower.ConfigOpenloopRamp(0.2);
   m_RightFollower.ConfigOpenloopRamp(0.2);
 
+  m_gyro.Reset();
+
   m_RightLeader.SetInverted(true);
   m_RightFollower.SetInverted(true);
  
@@ -31,6 +33,10 @@ WestCoastDrive::WestCoastDrive(frc::XboxController* p_Controller) : mp_Controlle
 
 void WestCoastDrive::arcadeDrive(double speed, double rotation) {
   m_DifferntialDrive.ArcadeDrive(speed, rotation, false);
+}
+
+void WestCoastDrive::tankDrive(double left, double right) {
+  m_DifferntialDrive.TankDrive(left, right);
 }
 
 void WestCoastDrive::controllerDrive() {
@@ -59,6 +65,13 @@ double WestCoastDrive::getAvgEncoderPosition() {
   return (m_LeftLeader.GetSelectedSensorPosition(0) + m_RightLeader.GetSelectedSensorPosition(0)) / 2;
 }
 
+void WestCoastDrive::zeroGyro() {
+  m_gyro.Reset();
+}
+
+double WestCoastDrive::getGyro() {
+  return m_gyro.GetAngle();
+}
 
 void WestCoastDrive::Periodic() {
   // Implementation of subsystem periodic method goes here.

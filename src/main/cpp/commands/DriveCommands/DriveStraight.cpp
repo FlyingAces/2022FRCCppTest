@@ -3,8 +3,6 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "commands/DriveCommands/DriveStraight.h"
-#include "RobotContainer.h"
-
 //  Drive distance in inches at speed multiplier between 0 and 1;
 DriveStraight::DriveStraight(WestCoastDrive* p_WestCoastDrive, double distance, double speed) : mp_WestCoastDrive{p_WestCoastDrive}, m_Distance{distance}, m_Speed{speed} {
     SetName("DriveStraight");

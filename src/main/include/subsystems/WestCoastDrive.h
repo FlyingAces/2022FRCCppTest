@@ -6,6 +6,7 @@
 
 #include <frc/DriverStation.h>
 #include <frc/XboxController.h>
+#include <frc/ADXRS450_Gyro.h>
 #include <frc2/command/SubsystemBase.h>
 #include <ctre/Phoenix.h>
 #include <frc/motorcontrol/MotorControllerGroup.h>
@@ -48,9 +49,12 @@ class WestCoastDrive : public frc2::SubsystemBase {
   WestCoastDrive(frc::XboxController* p_Controller);
 
   void arcadeDrive(double speed, double rotation);
+  void tankDrive(double left, double right);
   void controllerDrive();
   void toggleDriveMode();
   void zeroDrivetrain();
+  double getGyro();
+  void zeroGyro();
   
   double getAvgEncoderPosition();
 
@@ -76,6 +80,8 @@ class WestCoastDrive : public frc2::SubsystemBase {
   double m_ControllerDriveRotation;
   double m_DriveSpeedMult;
   double m_RotationSpeedMult;
+
+  frc::ADXRS450_Gyro m_gyro;
 
   WPI_TalonFX m_LeftLeader{WestCoastConstants::kLeftLeader};
   WPI_TalonFX m_RightLeader{WestCoastConstants::kRightLeader};

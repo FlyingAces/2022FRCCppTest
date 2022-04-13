@@ -6,6 +6,7 @@
 #include <frc2/command/WaitUntilCommand.h>
 
 #include "commands/DriveCommands/DriveStraight.h"
+#include "commands/DriveCommands/TurnFor.h"
 #include "subsystems/WestCoastDrive.h"
 
 class MainAuto : public frc2::CommandHelper<frc2::SequentialCommandGroup, MainAuto> {
