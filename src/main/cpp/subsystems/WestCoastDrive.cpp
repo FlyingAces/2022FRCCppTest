@@ -69,8 +69,8 @@ void WestCoastDrive::zeroGyro() {
   m_gyro.Reset();
 }
 
-double WestCoastDrive::getGyro() {
-  return m_gyro.GetAngle();
+units::degree_t WestCoastDrive::getGyro() {
+  return units::degree_t(std::remainder(m_gyro.GetAngle(), 360) *(WestCoastConstants::kGyroReversed ? -1.0 : 1.0));
 }
 
 void WestCoastDrive::Periodic() {

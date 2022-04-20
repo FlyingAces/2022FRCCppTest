@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
@@ -19,4 +19,4 @@ class TurnFor : public frc2::CommandHelper<frc2::CommandBase, TurnFor> {
     double m_Degrees;
     double m_TurnDir;
     double m_TurnErr;
-};
+};*/
