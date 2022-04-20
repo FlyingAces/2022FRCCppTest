@@ -4,6 +4,10 @@
 
 #pragma once
 
+#include <units/angle.h>
+#include <units/angular_velocity.h>
+#include <wpi/numbers>
+
 #include <frc/DriverStation.h>
 #include <frc/XboxController.h>
 #include <frc/ADXRS450_Gyro.h>
@@ -43,6 +47,20 @@ namespace WestCoastConstants {
   // Sizes
   //In Inches
   const double kWheelDiameter = 6.0;
+
+  //Turn To PID Constants
+  constexpr bool kGyroReversed = true;
+
+  constexpr double kTurnP = 0.4;
+  constexpr double kTurnI = 0;
+  constexpr double kTurnD = 0;
+
+  constexpr auto kTurnTolerance = 2_deg;
+  constexpr auto kTurnRateTolerance = 10_deg_per_s;
+
+  //Testing Values
+  constexpr auto kMaxTurnRate = 2_deg_per_s;
+  constexpr auto kMaxTurnAcceleration = 5_deg_per_s / 1_s;
 }
 class WestCoastDrive : public frc2::SubsystemBase {
  public:
@@ -53,7 +71,7 @@ class WestCoastDrive : public frc2::SubsystemBase {
   void controllerDrive();
   void toggleDriveMode();
   void zeroDrivetrain();
-  double getGyro();
+  units::degree_t getGyro();
   void zeroGyro();
   
   double getAvgEncoderPosition();
