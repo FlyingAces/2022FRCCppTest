@@ -51,7 +51,7 @@ namespace WestCoastConstants {
   //Turn To PID Constants
   constexpr bool kGyroReversed = true;
 
-  constexpr double kTurnP = 0.4;
+  constexpr double kTurnP = 0.075;
   constexpr double kTurnI = 0;
   constexpr double kTurnD = 0;
 
@@ -59,8 +59,8 @@ namespace WestCoastConstants {
   constexpr auto kTurnRateTolerance = 10_deg_per_s;
 
   //Testing Values
-  constexpr auto kMaxTurnRate = 2_deg_per_s;
-  constexpr auto kMaxTurnAcceleration = 5_deg_per_s / 1_s;
+  constexpr auto kMaxTurnRate = 100_deg_per_s;
+  constexpr auto kMaxTurnAcceleration = 300_deg_per_s / 1_s;
 }
 class WestCoastDrive : public frc2::SubsystemBase {
  public:
