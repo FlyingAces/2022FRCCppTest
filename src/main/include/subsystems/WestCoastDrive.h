@@ -25,7 +25,7 @@ namespace TurnPIDConst {
   //Turn To PID Constants
   constexpr bool kGyroReversed = true;
 
-  constexpr double kTurnP = 0.075;
+  constexpr double kTurnP = 0.07;
   constexpr double kTurnI = 0;
   constexpr double kTurnD = 0;
 

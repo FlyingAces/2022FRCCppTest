@@ -2,5 +2,5 @@
 
 MainAuto::MainAuto(WestCoastDrive* p_Drive) : mp_Drive{p_Drive} {
     // NOT SAFE AT ALL
-    AddCommands(TurnToAnglePID{mp_Drive, 45_deg});
+    AddCommands(TurnToAnglePID{mp_Drive, 90_deg});
 }
