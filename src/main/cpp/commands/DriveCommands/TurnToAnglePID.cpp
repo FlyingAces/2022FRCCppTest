@@ -3,7 +3,7 @@
 #include <frc/controller/ProfiledPIDController.h>
 
 TurnToAnglePID::TurnToAnglePID(WestCoastDrive* mp_drive, units::degree_t target) : CommandHelper(
-          frc::ProfiledPIDController<units::radians>(WestCoastConstants::kTurnP, WestCoastConstants::kTurnI, WestCoastConstants::kTurnD, {WestCoastConstants::kMaxTurnRate, WestCoastConstants::kMaxTurnAcceleration}),
+          frc::ProfiledPIDController<units::radians>(TurnPIDConst::kTurnP, TurnPIDConst::kTurnI, TurnPIDConst::kTurnD, {TurnPIDConst::kMaxTurnRate, TurnPIDConst::kMaxTurnAcceleration}),
           // Close loop on heading
           [mp_drive] { return mp_drive->getGyro(); },
           // Set reference to target
@@ -19,7 +19,7 @@ TurnToAnglePID::TurnToAnglePID(WestCoastDrive* mp_drive, units::degree_t target)
   // Set the controller tolerance - the delta tolerance ensures the robot is
   // stationary at the setpoint before it is considered as having reached the
   // reference
-  GetController().SetTolerance(WestCoastConstants::kTurnTolerance, WestCoastConstants::kTurnRateTolerance);
+  GetController().SetTolerance(TurnPIDConst::kTurnTolerance, TurnPIDConst::kTurnRateTolerance);
 
   AddRequirements({mp_drive});
 }

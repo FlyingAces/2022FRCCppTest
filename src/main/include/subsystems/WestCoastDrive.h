@@ -21,6 +21,22 @@
 #include <cmath>
 #include <iostream>
 
+namespace TurnPIDConst {
+  //Turn To PID Constants
+  constexpr bool kGyroReversed = true;
+
+  constexpr double kTurnP = 0.075;
+  constexpr double kTurnI = 0;
+  constexpr double kTurnD = 0;
+
+  constexpr auto kTurnTolerance = 2_deg;
+  constexpr auto kTurnRateTolerance = 10_deg_per_s;
+
+  //Testing Values
+  constexpr auto kMaxTurnRate = 100_deg_per_s;
+  constexpr auto kMaxTurnAcceleration = 300_deg_per_s / 1_s;
+}
+
 namespace WestCoastConstants {
   //PI
   const double kPI = 3.14159265358979;
@@ -47,20 +63,6 @@ namespace WestCoastConstants {
   // Sizes
   //In Inches
   const double kWheelDiameter = 6.0;
-
-  //Turn To PID Constants
-  constexpr bool kGyroReversed = true;
-
-  constexpr double kTurnP = 0.075;
-  constexpr double kTurnI = 0;
-  constexpr double kTurnD = 0;
-
-  constexpr auto kTurnTolerance = 2_deg;
-  constexpr auto kTurnRateTolerance = 10_deg_per_s;
-
-  //Testing Values
-  constexpr auto kMaxTurnRate = 100_deg_per_s;
-  constexpr auto kMaxTurnAcceleration = 300_deg_per_s / 1_s;
 }
 class WestCoastDrive : public frc2::SubsystemBase {
  public:

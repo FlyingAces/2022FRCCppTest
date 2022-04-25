@@ -70,7 +70,7 @@ void WestCoastDrive::zeroGyro() {
 }
 
 units::degree_t WestCoastDrive::getGyro() {
-  return units::degree_t(std::remainder(m_gyro.GetAngle(), 360) *(WestCoastConstants::kGyroReversed ? -1.0 : 1.0));
+  return units::degree_t(std::remainder(m_gyro.GetAngle(), 360) *(TurnPIDConst::kGyroReversed ? -1.0 : 1.0));
 }
 
 void WestCoastDrive::Periodic() {
