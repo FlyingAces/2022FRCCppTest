@@ -25,5 +25,7 @@ TurnToAnglePID::TurnToAnglePID(WestCoastDrive* mp_drive, units::degree_t target)
 }
 
 bool TurnToAnglePID::IsFinished() {
+  std::cout << "At Goal:" << GetController().AtGoal() << std::endl;
+  std::cout << "At Set:" << GetController().AtSetpoint() << std::endl;
   return GetController().AtGoal();
 }
