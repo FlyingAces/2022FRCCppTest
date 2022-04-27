@@ -22,15 +22,18 @@
 #include <iostream>
 
 namespace TurnPIDConst {
-  // KU = 0.07
-  // TU = 0.7
+  // KU = 0.05
+  // TU = 0.55
+  // constexpr double kTurnP = 0.033;
+  // constexpr double kTurnI = 0.1;
+  // constexpr double kTurnD = 0.002;
   
   //Turn To PID Constants
-  constexpr bool kGyroReversed = true;
+  constexpr bool kGyroReversed = false;
 
-  constexpr double kTurnP = 0.042;
-  constexpr double kTurnI = 0.12;
-  constexpr double kTurnD = 0.003675;
+  constexpr double kTurnP = 0.7;
+  constexpr double kTurnI = 0.02;
+  constexpr double kTurnD = 0.04;
 
   constexpr auto kTurnTolerance = 2_deg;
   constexpr auto kTurnRateTolerance = 10_deg_per_s;

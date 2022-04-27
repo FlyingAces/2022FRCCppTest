@@ -15,7 +15,7 @@ TurnToAnglePID::TurnToAnglePID(WestCoastDrive* mp_drive, units::degree_t target)
           // Require the drive
           {mp_drive}) {
   // Set the controller to be continuous (because it is an angle controller)
-  GetController().EnableContinuousInput(-180_deg, 180_deg);
+  GetController().EnableContinuousInput(0_deg, 360_deg);
   // Set the controller tolerance - the delta tolerance ensures the robot is
   // stationary at the setpoint before it is considered as having reached the
   // reference
@@ -25,7 +25,5 @@ TurnToAnglePID::TurnToAnglePID(WestCoastDrive* mp_drive, units::degree_t target)
 }
 
 bool TurnToAnglePID::IsFinished() {
-  std::cout << "At Goal:" << GetController().AtGoal() << std::endl;
-  std::cout << "At Set:" << GetController().AtSetpoint() << std::endl;
   return GetController().AtGoal();
 }

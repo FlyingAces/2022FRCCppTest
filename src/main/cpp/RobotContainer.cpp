@@ -30,5 +30,9 @@ void RobotContainer::ConfigureButtonBindings() {
 frc2::Command* RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
   //std::cout << "Starting Auto";
+  
+  // Zero Gyro (For Auto Testing)
+  m_WestCoastDrive.zeroGyro();
+
   return m_AutoMode.GetSelected();
 }
