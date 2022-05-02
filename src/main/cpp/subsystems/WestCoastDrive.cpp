@@ -72,6 +72,12 @@ void WestCoastDrive::zeroGyro() {
 units::degree_t WestCoastDrive::getGyro() {
   return units::degree_t(std::remainder(m_gyro.GetAngle(), 360) *(TurnPIDConst::kGyroReversed ? -1.0 : 1.0));
 }
+//Drive Profiled
+void WestCoastDrive::SetDriveStates(frc::TrapezoidProfile<units::meters>::State left, frc::TrapezoidProfile<units::meters>::State right) {
+  m_LeftLeader.Set(ControlMode::Position, left.position.value());
+  m_RightLeader.Set(ControlMode::Position, right.position.value());
+}
+
 
 void WestCoastDrive::Periodic() {
   // Implementation of subsystem periodic method goes here.

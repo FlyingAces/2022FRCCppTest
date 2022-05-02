@@ -6,6 +6,9 @@
 
 #include <units/angle.h>
 #include <units/angular_velocity.h>
+#include <units/acceleration.h>
+#include <units/time.h>
+#include <units/length.h>
 #include <wpi/numbers>
 
 #include <frc/DriverStation.h>
@@ -15,6 +18,7 @@
 #include <ctre/Phoenix.h>
 #include <frc/motorcontrol/MotorControllerGroup.h>
 #include <frc/drive/DifferentialDrive.h>
+#include <frc/trajectory/TrapezoidProfile.h>
 #include <frc/kinematics/DifferentialDriveKinematics.h>
 #include <frc/kinematics/DifferentialDriveOdometry.h>
 
@@ -69,6 +73,11 @@ namespace WestCoastConstants {
   // Sizes
   //In Inches
   const double kWheelDiameter = 6.0;
+
+  //Auto Consts
+
+  constexpr auto k_MaxSpeed = 0.5_mps;
+  constexpr auto k_MaxAcceleration = 0.5_mps_sq;
 }
 class WestCoastDrive : public frc2::SubsystemBase {
  public:
@@ -83,6 +92,9 @@ class WestCoastDrive : public frc2::SubsystemBase {
   void zeroGyro();
   
   double getAvgEncoderPosition();
+
+  //Drive Profiled
+  void SetDriveStates(frc::TrapezoidProfile<units::meters>::State left, frc::TrapezoidProfile<units::meters>::State right);
 
   void setAutoState(bool state) {
     m_AutoState = state;
