@@ -9,6 +9,11 @@ WestCoastDrive::WestCoastDrive(frc::XboxController* p_Controller) : mp_Controlle
   SetSubsystem("WestCoastDrive");
 
   //Config
+  m_LeftLeader.ConfigFactoryDefault();
+  m_RightLeader.ConfigFactoryDefault();
+  m_LeftFollower.ConfigFactoryDefault();
+  m_RightFollower.ConfigFactoryDefault();
+
   m_LeftLeader.SetNeutralMode(Brake);
   m_RightLeader.SetNeutralMode(Brake);
   m_LeftFollower.SetNeutralMode(Brake);
@@ -71,6 +76,14 @@ void WestCoastDrive::zeroGyro() {
 
 units::degree_t WestCoastDrive::getGyro() {
   return units::degree_t(std::remainder(m_gyro.GetAngle(), 360) *(TurnPIDConst::kGyroReversed ? -1.0 : 1.0));
+}
+
+units::meters WestCoastDrive::getLeftDist() {
+  return units::meter_t((m_LeftLeader.GetSelectedSensorPosition() / WestCoastConstants::kPulsesPerRev) * units::inch_t(WestCoastConstants::kWheelDiameter));
+}
+
+units::meters WestCoastDrive::getRightDist() {
+  return units::meter_t((m_LeftLeader.GetSelectedSensorPosition() / WestCoastConstants::kPulsesPerRev) * units::inch_t(WestCoastConstants::kWheelDiameter);
 }
 
 void WestCoastDrive::Periodic() {

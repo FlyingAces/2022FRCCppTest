@@ -92,6 +92,8 @@ class WestCoastDrive : public frc2::SubsystemBase {
   void zeroGyro();
   
   double getAvgEncoderPosition();
+  units::meter_t getRightDist();
+  units::meter_t getLeftDist();
 
   //Drive Profiled
   void SetDriveStates(frc::TrapezoidProfile<units::meters>::State left, frc::TrapezoidProfile<units::meters>::State right);
