@@ -78,12 +78,12 @@ units::degree_t WestCoastDrive::getGyro() {
   return units::degree_t(std::remainder(m_gyro.GetAngle(), 360) *(TurnPIDConst::kGyroReversed ? -1.0 : 1.0));
 }
 
-units::meters WestCoastDrive::getLeftDist() {
+units::meter_t WestCoastDrive::getLeftDist() {
   return units::meter_t((m_LeftLeader.GetSelectedSensorPosition() / WestCoastConstants::kPulsesPerRev) * units::inch_t(WestCoastConstants::kWheelDiameter));
 }
 
-units::meters WestCoastDrive::getRightDist() {
-  return units::meter_t((m_LeftLeader.GetSelectedSensorPosition() / WestCoastConstants::kPulsesPerRev) * units::inch_t(WestCoastConstants::kWheelDiameter);
+units::meter_t WestCoastDrive::getRightDist() {
+  return units::meter_t((m_LeftLeader.GetSelectedSensorPosition() / WestCoastConstants::kPulsesPerRev) * units::inch_t(WestCoastConstants::kWheelDiameter));
 }
 
 void WestCoastDrive::Periodic() {

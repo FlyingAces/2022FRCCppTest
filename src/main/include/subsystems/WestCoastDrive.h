@@ -25,6 +25,20 @@
 #include <cmath>
 #include <iostream>
 
+namespace DrivePIDConst {
+  //DriveDist PID Constants
+  constexpr double kDriveP = 0;
+  constexpr double kDriveI = 0;
+  constexpr double kDriveD = 0;
+
+  constexpr auto kDistTolerance = 0.1_m;
+  constexpr auto kAccelTolerance = 0.1_mps;
+
+  //Testing Values
+  constexpr auto kMaxSpeed = 1_mps;
+  constexpr auto kMaxAccel = 3_mps / 1_s;
+}
+
 namespace TurnPIDConst {
   // KU = 0.05
   // TU = 0.55
