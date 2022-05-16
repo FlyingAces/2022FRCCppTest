@@ -9,6 +9,7 @@
 #include "commands/DriveCommands/DriveStraight.h"
 #include "commands/DriveCommands/TurnFor.h"
 #include "commands/DriveCommands/TurnToAnglePID.h"
+#include "commands/DriveCommands/DriveDistPID.h"
 #include "subsystems/WestCoastDrive.h"
 
 class MainAuto : public frc2::CommandHelper<frc2::SequentialCommandGroup, MainAuto> {

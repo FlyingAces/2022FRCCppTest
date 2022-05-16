@@ -15,10 +15,12 @@ DriveDistPID::DriveDistPID(WestCoastDrive* mp_drive, units::meter_t target) : Co
           // Require the drive
           {mp_drive}) {
   GetController().SetTolerance(DrivePIDConst::kDistTolerance, DrivePIDConst::kAccelTolerance);
-
   AddRequirements({mp_drive});
 }
-
+void DriveDistPID::Initialize() {
+  mp_WestCoastDrive->zeroDrivetrain();
+  GetController().Reset(0_m);
+}
 bool DriveDistPID::IsFinished() {
   return GetController().AtGoal();
 }

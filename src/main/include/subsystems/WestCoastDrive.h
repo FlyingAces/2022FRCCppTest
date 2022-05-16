@@ -27,15 +27,15 @@
 
 namespace DrivePIDConst {
   //DriveDist PID Constants
-  constexpr double kDriveP = 0;
+  constexpr double kDriveP = 1.3;
   constexpr double kDriveI = 0;
   constexpr double kDriveD = 0;
 
-  constexpr auto kDistTolerance = 0.1_m;
-  constexpr auto kAccelTolerance = 0.1_mps;
+  constexpr auto kDistTolerance = 0.05_m;
+  constexpr auto kAccelTolerance = 0.05_mps;
 
   //Testing Values
-  constexpr auto kMaxSpeed = 1_mps;
+  constexpr auto kMaxSpeed = 5_mps;
   constexpr auto kMaxAccel = 3_mps / 1_s;
 }
 

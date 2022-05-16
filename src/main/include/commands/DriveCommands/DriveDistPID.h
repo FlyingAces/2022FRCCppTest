@@ -10,5 +10,9 @@ class DriveDistPID: public frc2::CommandHelper<frc2::ProfiledPIDCommand<units::m
  public:
   DriveDistPID(WestCoastDrive* p_drive, units::meter_t);
 
+  void Initialize() override;
   bool IsFinished() override;
+
+  private:
+  WestCoastDrive* mp_WestCoastDrive;
 };
