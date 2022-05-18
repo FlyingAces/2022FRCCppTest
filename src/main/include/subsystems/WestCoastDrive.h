@@ -27,11 +27,11 @@
 
 namespace DrivePIDConst {
   //DriveDist PID Constants
-  constexpr double kDriveP = 0.4;
-  constexpr double kDriveI = 0;
+  constexpr double kDriveP = 0.3;
+  constexpr double kDriveI = 0.0;
   constexpr double kDriveD = 0;
 
-  constexpr auto kDistTolerance = 0.01_m;
+  constexpr auto kDistTolerance = 0.05_m;
   constexpr auto kAccelTolerance = 0.05_mps;
 
   //Testing Values

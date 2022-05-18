@@ -80,11 +80,11 @@ units::degree_t WestCoastDrive::getGyro() {
 
 // * 0.2 is magic idk how it works
 units::meter_t WestCoastDrive::getLeftDist() {
-  return units::meter_t((m_RightLeader.GetSelectedSensorPosition()/WestCoastConstants::kPulsesPerRev) * (WestCoastConstants::kPI*WestCoastConstants::kWheelDiameterM))*0.2;
+  return units::meter_t((m_RightLeader.GetSelectedSensorPosition()/(WestCoastConstants::kPulsesPerRev*4)) * (WestCoastConstants::kPI*WestCoastConstants::kWheelDiameterM));
 }
 // * 0.2 is magic idk how it works
 units::meter_t WestCoastDrive::getRightDist() {
-  return units::meter_t((m_LeftLeader.GetSelectedSensorPosition()/WestCoastConstants::kPulsesPerRev) * (WestCoastConstants::kPI*WestCoastConstants::kWheelDiameterM))*0.2;
+  return units::meter_t((m_LeftLeader.GetSelectedSensorPosition()/(WestCoastConstants::kPulsesPerRev*4)) * (WestCoastConstants::kPI*WestCoastConstants::kWheelDiameterM));
 }
 
 void WestCoastDrive::Periodic() {
